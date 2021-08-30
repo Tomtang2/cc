@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-09 17:02:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 09:37:11
+ * @LastEditTime: 2021-08-30 11:22:08
 -->
 <template>
   <div class="login-container">
@@ -25,6 +25,12 @@
           <el-form-item class="btns">
             <el-button type="primary" @click="login('loginBox')">登陆</el-button>
             <el-button type="info" @click="resetLoginForm('loginBox')">重置</el-button>
+          </el-form-item>
+
+           <el-form-item class="tipinfo">
+            <span>默认账号：ttb   </span>
+            <span>默认密码：123456</span>
+      
           </el-form-item>
 
   </el-form>
@@ -122,7 +128,18 @@ export default {
   box-sizing: border-box;
   padding: 40px 20px;
   width: 100%;
-  bottom: 0;
+  bottom: -50px;
  
+}
+.tipinfo{
+  position: relative;
+  box-sizing: border-box;
+  bottom: 0;
+  width: 80%;
+  
+}
+.tipinfo span{
+  font-size: 5px;
+  font-family: 'Times New Roman', Times, serif;
 }
 </style>
