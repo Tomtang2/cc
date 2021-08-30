@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-09 17:02:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 11:00:19
+ * @LastEditTime: 2021-08-30 14:50:16
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -20,6 +20,7 @@ import VueResource from 'vue-resource'
 require('./mock')
 //配置请求的根路径
 axios.defaults.baseURL=""
+
 Vue.prototype.$http=axios
 Vue.prototype.$Mock=Mock
 Vue.use(VueResource)

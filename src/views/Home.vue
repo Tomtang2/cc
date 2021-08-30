@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-09 17:02:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 11:22:08
+ * @LastEditTime: 2021-08-30 15:09:11
 -->
 <template>
   <div class="login-container">
@@ -70,7 +70,6 @@ export default {
   
          if((this.loginBox.username===res.body[0].username)&&(this.loginBox.password===res.body[0].password)){
            window.sessionStorage.setItem('token',res.data[0].token);//存储token信息
-           
             this.$message({
                 message: '登陆成功！',
                 type: 'success'
