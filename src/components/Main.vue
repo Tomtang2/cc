@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-30 09:19:21
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 15:52:02
+ * @LastEditTime: 2021-08-30 15:58:13
 -->
 <template>
   <el-container class="main-container">
@@ -80,10 +80,11 @@ export default {
     },
      async getMenuList(){
         const {data:res}=await this.$http.get('/mock/navinfomation');
-        if(res[0].meta.status!==200){
+        console.log(res.data);
+        if(res.meta.status!==200){
             this.$message.error();
         }
-        this.navList=res[0].data;
+        this.navList=res.data;
     }
   },
   created(){

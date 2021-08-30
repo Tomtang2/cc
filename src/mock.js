@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-29 18:13:57
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 15:28:16
+ * @LastEditTime: 2021-08-30 15:58:36
  */
 // mock.js
 
@@ -25,7 +25,6 @@ const produceNewsData = function() {
 };
 
 const navTitle = function() {
-  let newsList = [];
   let navInfo = {
     data: [
       {
@@ -72,8 +71,7 @@ const navTitle = function() {
       status: 200,
     },
   };
-  newsList.push(navInfo);
-  return newsList;
+  return navInfo;
 };
 // 请求该url，就可以返回newsList
 Mock.mock("/mock/userinformation", produceNewsData); // 后面讲这个api的使用细节
