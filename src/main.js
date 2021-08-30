@@ -4,14 +4,14 @@
  * @Author: tangtianbao
  * @Date: 2021-08-09 17:02:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 00:00:03
+ * @LastEditTime: 2021-08-30 11:00:19
  */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import './assets/css/global.css'
-import ElementUI from 'element-ui';
+import './plugins/element'
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/font/iconfont.css'
 import axios from 'axios'
@@ -22,7 +22,6 @@ require('./mock')
 axios.defaults.baseURL=""
 Vue.prototype.$http=axios
 Vue.prototype.$Mock=Mock
-Vue.use(ElementUI)
 Vue.use(VueResource)
 Vue.config.productionTip = false
 
