@@ -1,8 +1,8 @@
 @font-face {
   font-family: "fontFamily"; /* Project id 2775591 */
-  src: url('iconfont.woff2?t=1630217532179') format('woff2'),
-       url('iconfont.woff?t=1630217532179') format('woff'),
-       url('iconfont.ttf?t=1630217532179') format('truetype');
+  src: url('iconfont.woff2?t=1630312390655') format('woff2'),
+       url('iconfont.woff?t=1630312390655') format('woff'),
+       url('iconfont.ttf?t=1630312390655') format('truetype');
 }
 
 .fontFamily {
@@ -13,15 +13,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.tb-icon-tijikongjian:before {
+  content: "\e8a0";
+}
+
+.tb-icon-baobiao:before {
+  content: "\e67c";
+}
+
+.tb-icon-danju:before {
+  content: "\e61f";
+}
+
+.tb-icon-shangpin:before {
+  content: "\e616";
+}
+
 .tb-icon-user:before {
-  font-size: 18px;
   content: "\eca6";
 }
 
 .tb-icon-mima:before {
-  font-size: 18px;
   content: "\e65c";
-  left: 2px;
 }
 
 .tb-icon-mimalan:before {

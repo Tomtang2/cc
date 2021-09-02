@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-30 09:19:21
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 15:58:13
+ * @LastEditTime: 2021-09-01 10:49:25
 -->
 <template>
   <el-container class="main-container">
@@ -17,50 +17,37 @@
       <el-button type="info" @click="loginOut()">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside :width="isCollapse? '60px':'200px'">
+          <div class="toggle-button" @click="toggleCollapse()" v-show="!isCollapse">
+              |||
+          </div>
+          <div class="toggle-button" @click="toggleCollapse()" v-show="isCollapse">
+              ---
+          </div>
         <el-menu
-          default-active="2"
+          :default-active="activePath"
           class="el-menu-vertical-demo"
           background-color="#545c64"
           text-color="#fff"
-          active-text-color="#ffd04b"
+          active-text-color="#409eff"
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          router
         >
-          <el-submenu index="1">
+          <el-submenu :index="item.id+''" v-for="item in navList" :key="item.id">
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>商品操作</span>
+              <i :class="iconsobj[item.id]"></i>
+              <span class="iconfont">{{item.authName}}</span>
             </template>
-            <el-menu-item index="1-1">
-              <i class="el-icon-info"></i>
-              <span>{{navList[0].authName}}</span>
-            </el-menu-item>
-            <el-menu-item index="1-2">
-              <i class="el-icon-goods"></i>
-              <span>{{navList[1].authName}}</span>
-            </el-menu-item>
-            <el-menu-item index="1-3">
-              <i class="el-icon-s-tools"></i>
-              <span>{{navList[2].authName}}</span>
-            </el-menu-item>
-            <el-menu-item index="1-4">
-              <i class="el-icon-setting"></i>
-              <span>{{navList[3].authName}}</span>
-            </el-menu-item>
-          </el-submenu>
-
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-menu"></i>
-              <span>导航二</span>
-            </template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-menu-item index="2-4">选项4</el-menu-item>
+            <el-menu-item-group>
+                <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)"><i class="el-icon-menu"></i>{{subItem.authName}}</el-menu-item>
+            </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+         <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -70,6 +57,14 @@ export default {
   data(){
       return{
          navList:[], 
+         iconsobj:{
+             '101':'fontFamily tb-icon-shangpin',
+             '102':'fontFamily tb-icon-user',
+             '103':'fontFamily tb-icon-tijikongjian',
+             '104':'fontFamily tb-icon-baobiao',
+         },
+         isCollapse:false,
+         activePath:'',
       }
       
   },
@@ -80,16 +75,28 @@ export default {
     },
      async getMenuList(){
         const {data:res}=await this.$http.get('/mock/navinfomation');
-        console.log(res.data);
         if(res.meta.status!==200){
             this.$message.error();
         }
-        this.navList=res.data;
+        else{
+            this.navList=res.data;
+        }  
+    },
+    //菜单折叠和展开
+    toggleCollapse(){
+        this.isCollapse=(!this.isCollapse);
+
+    },
+    saveNavState(activePath){
+        window.sessionStorage.setItem('activePath',activePath);
+        this.activePath=activePath;
     }
   },
   created(){
       this.getMenuList();
-  }
+      this.activePath=window.sessionStorage.getItem('activePath');
+  },
+  
 };
 </script>
 <style scoped>
@@ -127,5 +134,17 @@ export default {
 .el-button {
   align-content: center;
   right: 20px;
+}
+.iconfont{
+    margin-left: 15px;
+}
+.toggle-button{
+    background-color: #4a5064;
+    font-size: 10px;
+    text-align: center;
+    line-height: 20px;
+    color:white;
+    letter-spacing: .2em;
+    cursor: pointer;
 }
 </style>
