@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-09 17:02:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 14:50:16
+ * @LastEditTime: 2021-09-02 17:13:44
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -17,6 +17,7 @@ import './assets/font/iconfont.css'
 import axios from 'axios'
 import Mock from 'mockjs'
 import VueResource from 'vue-resource'
+import './vant/index'
 require('./mock')
 //配置请求的根路径
 axios.defaults.baseURL=""

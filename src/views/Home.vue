@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-09 17:02:58
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-30 15:09:11
+ * @LastEditTime: 2021-09-03 10:07:57
 -->
 <template>
   <div class="login-container">
@@ -66,10 +66,10 @@ export default {
           if(!valid){
             return
           }
-         const res = await this.$http.post("/mock/userinformation",this.loginBox);
-  
-         if((this.loginBox.username===res.body[0].username)&&(this.loginBox.password===res.body[0].password)){
-           window.sessionStorage.setItem('token',res.data[0].token);//存储token信息
+         const res = await this.$http.post("http://localhost:8081/userinformation",{params:this.loginBox});
+        // console.log(res.body.username);
+         if((this.loginBox.username===res.body.username)&&(this.loginBox.password===res.body.password)){
+           window.sessionStorage.setItem('token',res.body.token);//存储token信息
             this.$message({
                 message: '登陆成功！',
                 type: 'success'
@@ -79,6 +79,7 @@ export default {
          else{
             return this.$message.error('用户名或者密码错误，请重新登陆！');
          }
+         
         })
       },
   }

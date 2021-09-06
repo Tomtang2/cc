@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-30 17:38:18
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-01 16:40:12
+ * @LastEditTime: 2021-09-03 17:47:28
 -->
 <template>
   <div>
@@ -249,14 +249,16 @@ export default {
   },
   methods: {
     async getUserInfo() {
-      const { data: res } = await this.$http.get("/mock/userList", {
+      const res  = await this.$http.get("http://localhost:8081/userlist", {
         params: this.queryInfo,
       });
-      if (res.meta.status !== 201) return;
-      this.userList = res.user;
-      this.pagesize = res.pagesize;
-      this.total = res.total;
-      //console.log(res)
+      console.log(res.body.data);
+      if (res.body.status !== 201) return;
+      this.userList = res.body.data;
+      this.queryInfo.pagesize =parseInt(res.data.pagesize) ;
+      this.total = res.data.total;
+      this.queryInfo.pagenum=parseInt(res.data.pagenum) ;
+
     },
     addUser() {
       this.$refs.addFormRef.validate(async (valid) => {

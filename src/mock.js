@@ -4,7 +4,7 @@
  * @Author: tangtianbao
  * @Date: 2021-08-29 18:13:57
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-01 14:57:51
+ * @LastEditTime: 2021-09-02 17:30:05
  */
 // mock.js
 
@@ -13,6 +13,7 @@ const Mock = require("mockjs");
 
 
 // mock用户信息loginInfo,username用户姓名,password用户密码
+
 const produceNewsData = function() {
   let newsList = [];
   let loginInfo = {
@@ -24,6 +25,7 @@ const produceNewsData = function() {
   newsList.push(loginInfo);
   return newsList;
 };
+
 
 const navTitle = function() {
   let navInfo = {
@@ -258,7 +260,7 @@ const deleteList=function(id){
     //   return newlist
 }
 // 请求该url，就可以返回newsList
-Mock.mock("/mock/userinformation", produceNewsData); // 后面讲这个api的使用细节
+//Mock.mock("/mock/userinformation", produceNewsData); // 后面讲这个api的使用细节
 Mock.mock("/mock/navinfomation", navTitle);//返回导航栏信息表
 Mock.mock(RegExp("/mock/userList"+".*"), 'get',(options)=>{
   var pagenum=parseInt(getParams(options.url,'pagenum'));

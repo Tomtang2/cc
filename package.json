@@ -20,6 +20,8 @@
     "axios": "^0.21.1",
     "element-ui": "^2.15.5",
     "mockjs": "^1.1.0",
+    "touch-emulator": "^1.0.0",
+    "vant": "^2.12.26",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-resource": "^1.5.3",
     "vue-template-compiler": "^2.6.11"
